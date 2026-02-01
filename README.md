@@ -74,6 +74,7 @@ CREATE TABLE Registrations (
 );
 ```
 2. Configure Python
+```
 Main.py mein get_db_connection() function ke andar apna MySQL password aur user set karein:
 
 Python
@@ -83,18 +84,23 @@ conn = mysql.connector.connect(
     password="your_password", # Apna password
     database="UniEventDB"
 )
+```
 3. Run Application
+````
 Bash
 pip install mysql-connector-python
 python Main.py
+````
 📂 Project Structure
+```
 Main.py: Main application code containing Login, Admin, and Student classes.
 
 mysql.connector: Database connectivity module.
 
 tkinter: GUI Framework.
+```
 
 🤝 Contributing
-Agar aap is project ko mazeed behtar banana chahte hain, toh Pull Request zaroor open karein!
+If you want to add your contribution in this project then, open a new Pull Request!
 
 Developed with ❤️ by Your Hassan

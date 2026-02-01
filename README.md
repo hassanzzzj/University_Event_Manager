@@ -72,6 +72,7 @@ CREATE TABLE Registrations (
     FOREIGN KEY (student_id) REFERENCES Users(id),
     FOREIGN KEY (event_id) REFERENCES Events(id)
 );
+```
 2. Configure Python
 Main.py mein get_db_connection() function ke andar apna MySQL password aur user set karein:
 
@@ -96,4 +97,4 @@ tkinter: GUI Framework.
 🤝 Contributing
 Agar aap is project ko mazeed behtar banana chahte hain, toh Pull Request zaroor open karein!
 
-Developed with ❤️ by Your Name
+Developed with ❤️ by Your Hassan

@@ -103,4 +103,4 @@ tkinter: GUI Framework.
 🤝 Contributing
 If you want to add your contribution in this project then, open a new Pull Request!
 
-                                                                   Developed with ❤️ by Your Hassan
+                                                       Developed with ❤️ by Your Hassan

@@ -1,7 +1,53 @@
-🚀 University Event Management System
-A sleek, modern, and robust Desktop Application built with Python and Tkinter to manage university events efficiently. This system features a dual-interface for Admins and Students, integrated with a MySQL database for real-time data management.✨ Key Features🔐 Secure AuthenticationRole-Based Access: Separate dashboards for Admin and Student.Modern Login UI: Dark-themed, centered login card with secure password masking.🛡️ Admin Dashboard (The Control Center)Post Events: Easily add new events with title, venue, date, and description.Live Event Feed: View all scheduled events in a structured table.Manage Content: Update existing event details or delete outdated events.Registration Tracking: Monitor which students have registered for specific events using SQL Joins.🎓 Student Dashboard (User Interface)Event Discovery: Browse all upcoming university events.One-Click Registration: Quick registration using Event IDs.My Schedule: View a personalized list of registered events.Self-Management: Option to cancel/delete your own registrations.🎨 UI/UX HighlightsDark Mode Aesthetic: Designed with a professional #121212 and #1E1E2E color palette.Responsive Sidebar: Clean navigation menu for seamless switching between features.Data Visualization: Uses ttk.Treeview for clean, spreadsheet-like data displays.Interactive Feedback: Uses messagebox for success/error alerts and hover-ready cursors.🛠️ Tech StackLanguage: Python 3.xFrontend: Tkinter (Standard GUI Library)Backend: MySQLDatabase Connector: mysql-connector-python⚙️ Installation & Setup1. PrerequisitesMake sure you have MySQL Server installed and running.2. Database ConfigurationCreate a database named UniEventDB and run the following tables:SQLCREATE DATABASE UniEventDB;
+# 🎓 University Event Management System
+> A modern, dark-themed Desktop Application for seamless event planning and student participation.
+
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-blue?style=for-the-badge)](https://docs.python.org/3/library/tkinter.html)
+
+---
+
+## 📸 Overview
+Yeh project university ke events ko manage karne ke liye banaya gaya hai. Ismein **Admin** ke paas pure control hota hai aur **Students** asani se events browse aur register kar sakte hain. Iska UI fully dark-themed aur responsive hai.
+
+---
+
+## 🔥 Key Features
+
+### 🔐 Multi-User Authentication
+* **Admin Login:** Full access to manage events and view registrations.
+* **Student Login:** Personalized dashboard based on the logged-in user.
+
+### 🛠 Admin Capabilities
+* **Event Creation:** Title, Venue, Date, aur Description ke sath naye events post karein.
+* **Live Monitoring:** Tamam registered students ki list real-time mein dekhein.
+* **Data Management:** Purane events ko update ya delete karne ki mukammal sahulat.
+
+### 🎓 Student Experience
+* **Discovery:** University mein hone wale tamam events ki list dekhein.
+* **Quick Registration:** Sirf Event ID enter karke registration karein.
+* **Personalized View:** Apni registered events ki list aur unhe cancel (delete) karne ka option.
+
+---
+
+## 🎨 UI Design Details
+* **Theme:** Deep Dark Aesthetic (`#121212`).
+* **Sidebar:** Professional navigation menu with interactive buttons.
+* **Visual Feedback:** Success/Error popups ke liye `messagebox` ka behtareen use.
+* **Data Tables:** Clean aur organized data display ke liye `ttk.Treeview` ka istemal.
+
+---
+
+## 🛠️ Installation & Setup
+
+### 1. Database Setup
+Pehle MySQL mein `UniEventDB` banayein aur ye tables create karein:
+
+```sql
+CREATE DATABASE UniEventDB;
 USE UniEventDB;
 
+-- Users Table
 CREATE TABLE Users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE,
@@ -9,6 +55,7 @@ CREATE TABLE Users (
     role ENUM('admin', 'student')
 );
 
+-- Events Table
 CREATE TABLE Events (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
@@ -17,6 +64,7 @@ CREATE TABLE Events (
     description TEXT
 );
 
+-- Registrations Table
 CREATE TABLE Registrations (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
@@ -24,12 +72,28 @@ CREATE TABLE Registrations (
     FOREIGN KEY (student_id) REFERENCES Users(id),
     FOREIGN KEY (event_id) REFERENCES Events(id)
 );
-3. Clone & RunBash# Clone the repository
-git clone https://github.com/your-username/uni-event-management.git
+2. Configure Python
+Main.py mein get_db_connection() function ke andar apna MySQL password aur user set karein:
 
-# Install connector
+Python
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",        # Apna user
+    password="your_password", # Apna password
+    database="UniEventDB"
+)
+3. Run Application
+Bash
 pip install mysql-connector-python
-
-# Run the app
 python Main.py
-Note: Open Main.py and update the get_db_connection() function with your MySQL username and password.📸 Preview (Conceptual)Login PageAdmin PanelStudent View🤝 ContributingContributions are welcome! Feel free to fork this repo and submit a Pull Request.Developed with ❤️ by Hassan
+📂 Project Structure
+Main.py: Main application code containing Login, Admin, and Student classes.
+
+mysql.connector: Database connectivity module.
+
+tkinter: GUI Framework.
+
+🤝 Contributing
+Agar aap is project ko mazeed behtar banana chahte hain, toh Pull Request zaroor open karein!
+
+Developed with ❤️ by Your Name

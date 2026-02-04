@@ -1,45 +1,55 @@
-🎓 University Event Management System
-A sleek, dark-themed Desktop Application built with Python and MySQL for seamless event planning and student participation.
+# 🎓 University Event Management System
+> **A Premium, Dark-Themed Desktop Solution for Modern Campus Management.**
 
-📸 Overview
-The University Event Management System is a robust tool designed to bridge the gap between campus organizers and students. It features a modern Dark Mode UI and a Role-Based Access Control (RBAC) system, ensuring that admins and students have dedicated dashboards tailored to their needs.
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-blue?style=for-the-badge)](https://docs.python.org/3/library/tkinter.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-🔥 Key Features
-🔐 Secure Multi-User Authentication
-Role-Based Logic: Dynamically redirects users to either the Admin or Student dashboard upon login.
+---
 
-Environment Security: Uses .env files to keep sensitive database credentials secure and out of the source code.
+## 🌟 Project Spotlight
+This application is designed to streamline university event coordination. Built with a focus on **User Experience (UX)** and **Security**, it provides a seamless bridge between administrative organizers and the student body.
 
-🛠 Admin Command Center
-Event Management: Create, Read, Update, and Delete (CRUD) events with real-time database syncing.
 
-Registration Monitoring: View a centralized list of all student registrations using advanced SQL Joins.
 
-Data Visualization: Clean, organized data display using ttk.Treeview.
+### 🎯 Why Use This?
+* **Aesthetic UI:** Fully custom dark-themed interface built with Tkinter.
+* **Role-Based Access:** Separate environments for Admins and Students.
+* **Data Integrity:** Secure MySQL backend with Foreign Key constraints.
 
-🎓 Student Experience
-Event Discovery: Browse through all upcoming university events with detailed descriptions.
+---
 
-Instant Registration: Register for events instantly using unique Event IDs.
+## 🛠️ Key Functionalities
 
-Personal Portfolio: View personal registrations and cancel/delete them if needed.
+### 👨‍💼 Admin Dashboard (The Control Room)
+* **Event Lifecycle:** Create, Read, Update, and Delete (CRUD) events in real-time.
+* **Analytics:** Track registration counts and student details via SQL Joins.
+* **Management:** Complete control over the university's event schedule.
 
-🎨 UI/UX Design Details
-Theme: Deep Dark Aesthetic (#121212) for reduced eye strain and a modern feel.
+### 🎓 Student Dashboard (The Hub)
+* **Live Feed:** Browse all upcoming university events with a single click.
+* **Quick Enroll:** Instant registration system using unique Event Identifiers.
+* **Personalized View:** Manage your own registrations and opt-out whenever needed.
 
-Navigation: Sidebar-based navigation for a professional "dashboard" experience.
+---
 
-User Feedback: Comprehensive use of messagebox for error handling and success confirmations.
+## 🎨 Design Elements
+* **Palette:** Modern Graphite (`#121212`) & Royal Blue (`#3B82F6`) accents.
+* **Layout:** Persistent sidebar navigation for effortless multitasking.
+* **Feedback:** Interactive dialogue boxes and real-time data table updates.
 
-🛠️ Installation & Setup
-1. Database Configuration
-Run the following SQL script in your MySQL workbench to set up the environment:
+---
 
-SQL
+## 🚀 Getting Started
+
+### 1. Database Setup
+Create your database environment by executing these commands in your MySQL terminal:
+
+```sql
 CREATE DATABASE UniEventDB;
 USE UniEventDB;
 
--- Users Table
 CREATE TABLE Users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -47,7 +57,6 @@ CREATE TABLE Users (
     role ENUM('admin', 'student') NOT NULL
 );
 
--- Events Table
 CREATE TABLE Events (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
@@ -56,7 +65,6 @@ CREATE TABLE Events (
     description TEXT
 );
 
--- Registrations Table
 CREATE TABLE Registrations (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
@@ -64,35 +72,3 @@ CREATE TABLE Registrations (
     FOREIGN KEY (student_id) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (event_id) REFERENCES Events(id) ON DELETE CASCADE
 );
-2. Environment Setup
-Create a .env file in the root directory and add your credentials:
-
-Code snippet
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_secure_password
-DB_NAME=UniEventDB
-3. Execution
-Bash
-# Install required libraries
-pip install mysql-connector-python python-dotenv
-
-# Launch the application
-python Main.py
-🚀 Future Improvements
-[ ] Password Hashing: Implement bcrypt for secure password storage.
-
-[ ] Email Notifications: Automatic email alerts for new event registrations.
-
-[ ] Search Filter: Add a search bar to filter events by name or date.
-
-📂 Project Structure
-Main.py: The entry point of the application containing the UI logic.
-
-.env: (Hidden) Local configuration for database security.
-
-requirements.txt: List of dependencies.
-
-🤝 Contributing Contributions are welcome! Feel free to fork this repository, open an issue, or submit a Pull Request.
-
-Developed with ❤️ by Hassan

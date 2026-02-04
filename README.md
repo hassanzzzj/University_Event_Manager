@@ -1,131 +1,81 @@
-# 🎓 University Event Management System
-> **A Premium, Dark-Themed Desktop Solution for Modern Campus Management.**
+<div align="center">
+  <h1 style="border-bottom: none;">🎓 University Event Management System</h1>
+  <p><i>A Premium, Dark-Themed Desktop Solution for Modern Campus Management.</i></p>
+</div>
 
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-blue?style=for-the-badge)](https://docs.python.org/3/library/tkinter.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+<hr />
 
----
-
-## 🌟 Project Spotlight
-This application is designed to streamline university event coordination. Built with a focus on **User Experience (UX)** and **Security**, it provides a seamless bridge between administrative organizers and the student body.
-
-
-
-### 🎯 Why Use This?
-* **Aesthetic UI:** Fully custom dark-themed interface built with Tkinter.
-* **Role-Based Access:** Separate environments for Admins and Students.
-* **Data Integrity:** Secure MySQL backend with Foreign Key constraints.
-
----
-
-## 🛠️ Key Functionalities
-
-### 👨‍💼 Admin Dashboard (The Control Room)
-* **Event Lifecycle:** Create, Read, Update, and Delete (CRUD) events in real-time.
-* **Analytics:** Track registration counts and student details via SQL Joins.
-* **Management:** Complete control over the university's event schedule.
-
-### 🎓 Student Dashboard (The Hub)
-* **Live Feed:** Browse all upcoming university events with a single click.
-* **Quick Enroll:** Instant registration system using unique Event Identifiers.
-* **Personalized View:** Manage your own registrations and opt-out whenever needed.
-
----
-
-## 🎨 Design Elements
-* **Palette:** Modern Graphite (`#121212`) & Royal Blue (`#3B82F6`) accents.
-* **Layout:** Persistent sidebar navigation for effortless multitasking.
-* **Feedback:** Interactive dialogue boxes and real-time data table updates.
-
----
-
-## 🚀 Getting Started
-
-### 1. Database Setup
-Create your database environment by executing these commands in your MySQL terminal:
-
-```sql
-CREATE DATABASE UniEventDB;
-USE UniEventDB;
-
-CREATE TABLE Users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    role ENUM('admin', 'student') NOT NULL
-);
-
-CREATE TABLE Events (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    venue VARCHAR(100),
-    date DATE,
-    description TEXT
-);
-
-CREATE TABLE Registrations (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    student_id INT,
-    event_id INT,
-    FOREIGN KEY (student_id) REFERENCES Users(id) ON DELETE CASCADE,
-    FOREIGN KEY (event_id) REFERENCES Events(id) ON DELETE CASCADE
-);
-```
-
-⚙️ 2. Environment Configuration
-Security is a priority. Create a .env file in the root directory to store your credentials securely:
-
-
-# Database Connection Details
+<details open>
+  <summary><h3 style="display: inline-block;">⚙️ 2. Environment Configuration</h3></summary>
+  <p>Security is a priority. Create a <code>.env</code> file in the root directory to store your credentials securely:</p>
+  <pre style="background: #1e1e1e; color: #dcdcdc; padding: 15px; border-radius: 8px; border: 1px solid #333;">
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_mysql_password
-DB_NAME=UniEventDB
-[!IMPORTANT] Never share your .env file on GitHub. Add it to your .gitignore to keep your database safe.
+DB_NAME=UniEventDB</pre>
+  <blockquote style="border-left: 5px solid #ff5f57; background: #fff5f5; padding: 10px; color: #333;">
+    <strong>⚠️ IMPORTANT:</strong> Never share your <code>.env</code> file on GitHub. Add it to your <code>.gitignore</code> to keep your database safe.
+  </blockquote>
+</details>
 
-🚀 3. Installation & Launch
-Follow these simple steps to get the application running on your local machine:
+<br />
 
-Step 1: Install Dependencies
+<details open>
+  <summary><h3 style="display: inline-block;">🚀 3. Installation & Launch</h3></summary>
+  <p>Follow these simple steps to get the application running:</p>
+  
+  <strong>Step 1: Install Dependencies</strong>
+  <pre style="background: #1e1e1e; color: #4ade80; padding: 15px; border-radius: 8px;">pip install mysql-connector-python python-dotenv</pre>
 
+  <strong>Step 2: Start Application</strong>
+  <pre style="background: #1e1e1e; color: #4ade80; padding: 15px; border-radius: 8px;">python Main.py</pre>
+</details>
 
-pip install mysql-connector-python python-dotenv
-Step 2: Start Application
+<br />
 
-python Main.py
-📂 Project Architecture
-A clean look at the projects organization:
+<h3 align="left">📂 Project Architecture</h3>
+<p>A structured look at the project's organization:</p>
 
+<table style="width: 100%; border-collapse: collapse; background: #121212; color: white;">
+  <tr style="border-bottom: 1px solid #333;">
+    <th align="left" style="padding: 10px;">File/Folder</th>
+    <th align="left" style="padding: 10px;">Description</th>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">📂 <code>Main.py</code></td>
+    <td style="padding: 10px;">Core Logic & UI Classes</td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">🔑 <code>.env</code></td>
+    <td style="padding: 10px; color: #ff5f57;">Encrypted DB Credentials (HIDDEN)</td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">🖼️ <code>assets/</code></td>
+    <td style="padding: 10px;">Optional UI Icons & Media</td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">📄 <code>README.md</code></td>
+    <td style="padding: 10px;">Project Documentation</td>
+  </tr>
+</table>
 
-graph TD
-    A[Root Directory] --> B(Main.py)
-    A --> C[.env]
-    A --> D[assets/]
-    A --> E[README.md]
-    
-    style B fill:#3B82F6,stroke:#fff,stroke-width:2px,color:#fff
-    style C fill:#EF4444,stroke:#fff,stroke-width:2px,color:#fff
+<br />
 
-├── Main.py              # Core Logic & UI Classes
-├── .env                 # Encrypted DB Credentials (HIDDEN)
-├── assets/              # Optional UI Icons & Media
-└── README.md            # Project Documentation
-🤝 Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+<h3 align="left">🤝 Contributing</h3>
+<p>Contributions make the open-source community an amazing place to learn and create. To contribute:</p>
+<ol>
+  <li><b>Fork</b> the Project</li>
+  <li><b>Create</b> your Feature Branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+  <li><b>Commit</b> your Changes (<code>git commit -m 'Add AmazingFeature'</code>)</li>
+  <li><b>Push</b> to the Branch (<code>git push origin feature/AmazingFeature</code>)</li>
+  <li><b>Open</b> a Pull Request</li>
+</ol>
 
-Fork the Project (Click the Fork button at the top)
+<hr />
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-Push to the Branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
-
-<p align="center"> Developed with ❤️ by <b>Hassan</b>
-
-
-<i>"Let's build something great together!"</i> </p>
+<div align="center">
+  <p>Developed with ❤️ by <b>Hassan</b></p>
+  <a href="https://github.com/hassanzzzj">
+    <img src="https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github" alt="GitHub" />
+  </a>
+</div>

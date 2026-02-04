@@ -3,7 +3,6 @@ from tkinter import messagebox,ttk
 import mysql.connector
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
 
 # --- Database Connection (Fixed) ---
@@ -69,10 +68,10 @@ class LoginPage:
             try:
                 cursor = conn.cursor(dictionary=True)
                 # SQL Query
-                query = "SELECT role FROM Users WHERE username = %s AND password = %s"
+                query = cursor.execute("SELECT id, role FROM Users WHERE username = %s AND password = %s", (user, pwd))
                 cursor.execute(query, (user, pwd))
                 result = cursor.fetchone()
-
+                actual_id = result['id'] 
                 if result:
                     role = result['role']
                     messagebox.showinfo("Success", f"Login Successful! Role: {role}")
@@ -297,25 +296,6 @@ class AdminDashboard:
         tree.column("Event Date", width=100, anchor='center')
         tree.pack(pady=10, fill='both', expand=True)
 
-        # tk.Label(self.root, text="All Registered Students", font=("Arial", 20, "bold"), fg="#333").pack(pady=20)
-
-        # Treeview Setup (Isme errors fixed hain)
-        # columns = ('Reg ID', 'Student Name', 'Event Name', 'Event Date')
-        # tree = ttk.Treeview(self.root, columns=columns, show='headings', height=15)
-        
-        # # Headings Setup
-        # tree.heading('Reg ID', text='ID')
-        # tree.heading('Student Name', text='Student Name')
-        # tree.heading('Event Name', text='Event Name')
-        # tree.heading('Event Date', text='Date')
-
-        # # Width Setup
-        # tree.column("Reg ID", width=50, anchor='center')
-        # tree.column("Student Name", width=150, anchor='center')
-        # tree.column("Event Name", width=200, anchor='center')
-        # tree.column("Event Date", width=100, anchor='center')
-        
-        # tree.pack(pady=10, padx=20, fill='both', expand=True)
 
         # SQL Logic with JOIN
         try:
@@ -336,8 +316,6 @@ class AdminDashboard:
             # Fix: tk.messagebox ki jagah direct messagebox use karein
             messagebox.showerror("Database Error", f"Error fetching data: {e}")
 
-        # Back Button
-        # tk.Button(self.root, text="Back to Dashboard", command=self.show_admin_panel, bg="gray", fg="white", width=20).pack(pady=20)
     
     def show_admin_panel(self):
         self.clear_screen()
@@ -347,6 +325,8 @@ class AdminDashboard:
         
         for widget in self.root.winfo_children():
             widget.destroy()
+
+
 # ==========================================
 # 2. STUDENT DASHBOARD CLASS
 # ==========================================
@@ -547,5 +527,5 @@ class StudentDashboard:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = LoginPage(root)
+    app = StudentDashboard(root, "hassan", 1)
     root.mainloop()

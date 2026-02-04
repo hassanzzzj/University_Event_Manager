@@ -72,7 +72,7 @@ CREATE TABLE Registrations (
     FOREIGN KEY (student_id) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (event_id) REFERENCES Events(id) ON DELETE CASCADE
 );
-
+```
 
 ⚙️ 2. Environment Configuration
 Security is a priority. Create a .env file in the root directory to store your credentials securely:

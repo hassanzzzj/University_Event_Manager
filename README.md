@@ -1,64 +1,56 @@
-# 🎓 University Event Management System
-> A modern, dark-themed Desktop Application for seamless event planning and student participation.
+🎓 University Event Management System
+A sleek, dark-themed Desktop Application built with Python and MySQL for seamless event planning and student participation.
 
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-blue?style=for-the-badge)](https://docs.python.org/3/library/tkinter.html)
+📸 Overview
+The University Event Management System is a robust tool designed to bridge the gap between campus organizers and students. It features a modern Dark Mode UI and a Role-Based Access Control (RBAC) system, ensuring that admins and students have dedicated dashboards tailored to their needs.
 
----
+🔥 Key Features
+🔐 Secure Multi-User Authentication
+Role-Based Logic: Dynamically redirects users to either the Admin or Student dashboard upon login.
 
-## 📸 Overview
-Yeh project university ke events ko manage karne ke liye banaya gaya hai. Ismein **Admin** ke paas pure control hota hai aur **Students** asani se events browse aur register kar sakte hain. Iska UI fully dark-themed aur responsive hai.
+Environment Security: Uses .env files to keep sensitive database credentials secure and out of the source code.
 
----
+🛠 Admin Command Center
+Event Management: Create, Read, Update, and Delete (CRUD) events with real-time database syncing.
 
-## 🔥 Key Features
+Registration Monitoring: View a centralized list of all student registrations using advanced SQL Joins.
 
-### 🔐 Multi-User Authentication
-* **Admin Login:** Full access to manage events and view registrations.
-* **Student Login:** Personalized dashboard based on the logged-in user.
+Data Visualization: Clean, organized data display using ttk.Treeview.
 
-### 🛠 Admin Capabilities
-* **Event Creation:** Title, Venue, Date, aur Description ke sath naye events post karein.
-* **Live Monitoring:** Tamam registered students ki list real-time mein dekhein.
-* **Data Management:** Purane events ko update ya delete karne ki mukammal sahulat.
+🎓 Student Experience
+Event Discovery: Browse through all upcoming university events with detailed descriptions.
 
-### 🎓 Student Experience
-* **Discovery:** University mein hone wale tamam events ki list dekhein.
-* **Quick Registration:** Sirf Event ID enter karke registration karein.
-* **Personalized View:** Apni registered events ki list aur unhe cancel (delete) karne ka option.
+Instant Registration: Register for events instantly using unique Event IDs.
 
----
+Personal Portfolio: View personal registrations and cancel/delete them if needed.
 
-## 🎨 UI Design Details
-* **Theme:** Deep Dark Aesthetic (`#121212`).
-* **Sidebar:** Professional navigation menu with interactive buttons.
-* **Visual Feedback:** Success/Error popups ke liye `messagebox` ka behtareen use.
-* **Data Tables:** Clean aur organized data display ke liye `ttk.Treeview` ka istemal.
+🎨 UI/UX Design Details
+Theme: Deep Dark Aesthetic (#121212) for reduced eye strain and a modern feel.
 
----
+Navigation: Sidebar-based navigation for a professional "dashboard" experience.
 
-## 🛠️ Installation & Setup
+User Feedback: Comprehensive use of messagebox for error handling and success confirmations.
 
-### 1. Database Setup
-Pehle MySQL mein `UniEventDB` banayein aur ye tables create karein:
+🛠️ Installation & Setup
+1. Database Configuration
+Run the following SQL script in your MySQL workbench to set up the environment:
 
-```sql
+SQL
 CREATE DATABASE UniEventDB;
 USE UniEventDB;
 
 -- Users Table
 CREATE TABLE Users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE,
-    password VARCHAR(50),
-    role ENUM('admin', 'student')
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    role ENUM('admin', 'student') NOT NULL
 );
 
 -- Events Table
 CREATE TABLE Events (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
     venue VARCHAR(100),
     date DATE,
     description TEXT
@@ -69,38 +61,38 @@ CREATE TABLE Registrations (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     event_id INT,
-    FOREIGN KEY (student_id) REFERENCES Users(id),
-    FOREIGN KEY (event_id) REFERENCES Events(id)
+    FOREIGN KEY (student_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (event_id) REFERENCES Events(id) ON DELETE CASCADE
 );
-```
-2. Configure Python
-```
-Main.py mein get_db_connection() function ke andar apna MySQL password aur user set karein:
+2. Environment Setup
+Create a .env file in the root directory and add your credentials:
 
-Python
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",        # Apna user
-    password="your_password", # Apna password
-    database="UniEventDB"
-)
-```
-3. Run Application
-````
+Code snippet
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_secure_password
+DB_NAME=UniEventDB
+3. Execution
 Bash
-pip install mysql-connector-python
+# Install required libraries
+pip install mysql-connector-python python-dotenv
+
+# Launch the application
 python Main.py
-````
+🚀 Future Improvements
+[ ] Password Hashing: Implement bcrypt for secure password storage.
+
+[ ] Email Notifications: Automatic email alerts for new event registrations.
+
+[ ] Search Filter: Add a search bar to filter events by name or date.
+
 📂 Project Structure
-```
-Main.py: Main application code containing Login, Admin, and Student classes.
+Main.py: The entry point of the application containing the UI logic.
 
-mysql.connector: Database connectivity module.
+.env: (Hidden) Local configuration for database security.
 
-tkinter: GUI Framework.
-```
+requirements.txt: List of dependencies.
 
-🤝 Contributing
-If you want to add your contribution in this project then, open a new Pull Request!
+🤝 Contributing Contributions are welcome! Feel free to fork this repository, open an issue, or submit a Pull Request.
 
-                    Developed with ❤️ by Your Hassan
+Developed with ❤️ by Hassan
